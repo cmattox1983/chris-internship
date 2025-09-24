@@ -1,8 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
+  const [exploreItems, setExploreItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+async function fetchExploreItems(){
+  try{setLoading(true)
+    const {data}=await 
+  }
+}
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
