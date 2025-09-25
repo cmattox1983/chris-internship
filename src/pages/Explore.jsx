@@ -6,14 +6,15 @@ import axios from "axios";
 const Explore = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("");
 
   async function fetchExploreItems() {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
+        filter ? { params: { filter } } : undefined
       );
-      console.log(data);
       setExploreItems(data);
     } catch (err) {
       console.error(err);
@@ -24,7 +25,7 @@ const Explore = () => {
 
   useEffect(() => {
     fetchExploreItems();
-  }, []);
+  }, [filter]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,6 +61,8 @@ const Explore = () => {
                 items={exploreItems}
                 initial={8}
                 next={4}
+                filter={filter}
+                onFilterChange={setFilter}
               />
             </div>
           </div>
