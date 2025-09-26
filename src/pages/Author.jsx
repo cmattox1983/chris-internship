@@ -6,7 +6,7 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const Author = () => {
-  const [author, setAuthor] = useState();
+  const [authors, setAuthors] = useState();
   const [loading, setLoading] = useState(true);
   const { authorId } = useParams();
 
@@ -17,7 +17,7 @@ const Author = () => {
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
       );
       console.log(data);
-      setAuthor(data);
+      setAuthors(data);
     } catch (err) {
       console.error(err);
     } finally {
@@ -26,8 +26,8 @@ const Author = () => {
   }
 
   useEffect(() => {
-    fetchAuthor();
-  }, []);
+    fetchAuthor(authorId);
+  }, [authorId]);
 
   return (
     <div id="wrapper">
@@ -79,7 +79,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems loading={loading} author={author} />
+                  <AuthorItems loading={loading} author={authors} />
                 </div>
               </div>
             </div>
