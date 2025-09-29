@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Skeleton from "../UI/Skeleton";
 
 const AuthorItems = ({ loading, author }) => {
@@ -24,13 +22,11 @@ const AuthorItems = ({ loading, author }) => {
                       />
                     </div>
                     <div className="nft__item_wrap">
-                      <div className="nft__item_extra">
-                        <Skeleton
-                          width="100%"
-                          height="230px"
-                          borderRadius="8px"
-                        />
-                      </div>
+                      <Skeleton
+                        width="100%"
+                        height="230px"
+                        borderRadius="8px"
+                      />
                     </div>
                     <div className="nft__item_info">
                       <Skeleton width="50%" height="18px" />
