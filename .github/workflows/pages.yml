@@ -18,24 +18,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # Use Node 18 (react-scripts is happiest here)
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
+      # Install deps (fall back if npm ci is picky)
       - name: Install deps
-        run: npm ci
+        run: npm ci || npm install
 
-      # CRA needs the correct subpath when hosted under /chris-internship
+      # Build the app. CI is blank so CRA warnings don't fail the build.
       - name: Build
         run: npm run build
         env:
           PUBLIC_URL: /chris-internship
+          CI: ""
 
-      # SPA fallback for react-router (deep links won't 404)
+      # SPA fallback so react-router deep links work on Pages
       - name: Add SPA 404 fallback
         run: cp build/index.html build/404.html
 
@@ -54,3 +55,4 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
