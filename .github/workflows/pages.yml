@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -23,18 +23,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: npm
 
-      - name: Install deps
-        run: npm ci
+      # Prefer reproducible install; if lockfile drifts, fall back gracefully
+      - name: Install deps (prefer ci, fall back)
+        run: |
+          npm ci || true
+          npm install --legacy-peer-deps --no-fund --no-audit
 
       - name: Build
+        run: npm run build
         env:
           PUBLIC_URL: /chris-internship
           CI: ""
-        run: npm run build
 
-      - name: Create 404.html for SPA routing
+      # Single-page app fallback so deep-links don't 404 on Pages
+      - name: SPA 404 fallback
         run: cp build/index.html build/404.html
 
       - name: Upload artifact
@@ -52,4 +55,3 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
