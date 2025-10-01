@@ -18,7 +18,6 @@ function App() {
       sessionStorage.setItem("scrollPosition", window.scrollY.toString());
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
-
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };

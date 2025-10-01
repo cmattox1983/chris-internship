@@ -6,7 +6,6 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
   const { authorId } = useParams();
-
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
