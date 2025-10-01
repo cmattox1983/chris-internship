@@ -6,7 +6,6 @@ import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
   const { nftId } = useParams();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
