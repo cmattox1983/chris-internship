@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import ReactOwlCarousel from "react-owl-carousel";
 import Skeleton from "../UI/Skeleton";
@@ -32,7 +30,7 @@ const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-in">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 
@@ -37,7 +36,7 @@ const TopSellers = () => {
             </div>
           </div>
           {loading ? (
-            <div className="col-md-12">
+            <div className="col-md-12" data-aos="fade-in">
               <ol className="author_list">
                 {new Array(12).fill(0).map((_, index) => (
                   <li key={index}>
@@ -59,7 +58,7 @@ const TopSellers = () => {
               </ol>
             </div>
           ) : (
-            <div className="col-md-12">
+            <div className="col-md-12" data-aos="fade-in">
               <ol className="author_list">
                 {topSellers.map((item) => (
                   <li key={item.id}>
