@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -20,24 +20,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Use Node 18 (react-scripts is happiest here)
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
 
-      # Install deps (fall back if npm ci is picky)
       - name: Install deps
-        run: npm ci || npm install
+        run: npm ci
 
-      # Build the app. CI is blank so CRA warnings don't fail the build.
       - name: Build
-        run: npm run build
         env:
           PUBLIC_URL: /chris-internship
           CI: ""
+        run: npm run build
 
-      # SPA fallback so react-router deep links work on Pages
-      - name: Add SPA 404 fallback
+      - name: Create 404.html for SPA routing
         run: cp build/index.html build/404.html
 
       - name: Upload artifact
