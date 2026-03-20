@@ -16,8 +16,3 @@ A dynamic book platform that transforms a static site into an API-driven applica
 
 ## 🌐 Live Demo
 [https://cmattox1983.github.io/chris-internship/]
-
----
-
-## 📸 Screenshot
-[ultraverse.png]
