@@ -20,4 +20,4 @@ A dynamic book platform that transforms a static site into an API-driven applica
 ---
 
 ## 📸 Screenshot
-![ultraverse.png]
+[ultraverse.png]
